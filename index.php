@@ -1,13 +1,15 @@
 <html>
  <head>
+  <meta charset="UTF-8">
   <title>Brute Force</title>
  </head>
  <body>
   <form method="post">
-  <center>
-   <table>
+   <table align="center">
     <tr>
-     <th>Brute force webpage</th>
+     <th>
+      BruteForce WebPage   
+     </th>
     </tr>
     <tr>
      <td>
@@ -25,8 +27,25 @@
       <input type="password" name="password">
      </td>
     </tr>
+    <tr>
+     <td>
+      <input type="submit" value="Login" name="login">
+     </td>
+    </tr>
    </table>
-  </center>
   </form>
  </body>
 </html>
+<?php
+    if(isset($_POST["login"]))
+    {
+        $realUser = "manolo";
+        $realPassword = "1234";
+        $user = $_POST["user"];
+        $password = $_POST["password"]; 
+        if($realUser == $user AND $realPassword == $password)
+        {
+            echo "<center>Congratulations!!! :-)</center>";
+        }
+    }
+?>
