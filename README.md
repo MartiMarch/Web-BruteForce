@@ -1,5 +1,5 @@
 <h1>Web-BruteForce</h1>
-Testing a brute force over a basic Webpage. I use Selenium and Python for scrapping the web and web server is launched over centos 7.
+Testing a brute force over a basic web page. I use Selenium and Python for scrapping the web and web server is launched over centos 7.
 
 
 <h2>Installation</h2>
