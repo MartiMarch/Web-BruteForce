@@ -1,5 +1,5 @@
 <h1>Web-BruteForce</h1>
-Testing a brute force over a basic web page with Selenium.
+Testing a brute force over a basic web page with Selenium and Python.
 
 
 <h2>Installation</h2>
