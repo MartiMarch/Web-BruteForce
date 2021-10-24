@@ -19,3 +19,4 @@ def all_perms(elements):<br>
                 # nb elements[0:1] works in both string and list contexts<br>
                 yield perm[:i] + elements[0:1] + perm[i:]<br>
 </pre>
+<p align="justify">The second step is send the petition to the web page. Selenium can search the input using the name of the input so the program only has to get the list of permutations and loop it setting every elemnt of the list as the password. If this is xecuted secuencialy it will take a lot of time so i parrallelized the code using a queue (FIFO) with N threds./p>
