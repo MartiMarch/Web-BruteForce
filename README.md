@@ -7,7 +7,7 @@ Launch a brute force attack over a web page with Selenium and Python.
 <h2>Description</h2>
 <p align="justify">The prupose of this repository is explain how is possible to launch a brute force attack over web page generating all the permutations using a list of chars and Selenium.<p>
   
-<p align="justify">There are two fundamentals stpes. The first step consits on create all the possible permutations. To do it i have used a default python function named "permutations", it's inside of itertools. The function work efficiently so i didn't take any effort to optimitze it. However, if you want to know more about it the <a href="https://stackoverflow.com/questions/104420/how-to-generate-all-permutations-of-a-list">implementation</a> of th function is the next:</p>
+<p align="justify">There are two fundamentals stpes. The first step consits on create all the possible permutations. To do it i have used a default python function named "permutations", it's inside of itertools. The function work efficiently so i didn't take any effort to optimitze it. However, if you want to know more about it the <a href="https://stackoverflow.com/questions/104420/how-to-generate-all-permutations-of-a-list">implementation</a> of the function here is the implementation:</p>
 
 <pre>
 def all_perms(elements):<br>
