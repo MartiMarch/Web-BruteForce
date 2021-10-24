@@ -9,11 +9,11 @@ Launch a brute force attack over a web page with Selenium and Python.
   
 <p align="justify">There are two fundamentals stpes. The first step consits on create all the possible permutations. To do it i have used a default python function named "permutations", it's inside of itertools. The function work efficiently so i don't take any effort optimitzation it a bit. However, if you want to know more about it the implementation of th function is the next:</p>
 
-def all_perms(elements):
-    if len(elements) <=1:
-        yield elements
-    else:
-        for perm in all_perms(elements[1:]):
-            for i in range(len(elements)):
-                # nb elements[0:1] works in both string and list contexts
-                yield perm[:i] + elements[0:1] + perm[i:]
+def all_perms(elements):<br>
+    if len(elements) <=1:<br>
+        yield elements<br>
+    else:<br>
+        for perm in all_perms(elements[1:]):<br>
+            for i in range(len(elements)):<br>
+                # nb elements[0:1] works in both string and list contexts<br>
+                yield perm[:i] + elements[0:1] + perm[i:]<br>
