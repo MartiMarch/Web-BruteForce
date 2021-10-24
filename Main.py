@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.options import Options
 URL = "http://192.168.1.35/"
 CHARS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 USER = "manolo"
-PASS_LENG = 5
+PASS_LENG = 7
 N = 10
 
 def queueTrhead(pb, queue):
