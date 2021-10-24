@@ -75,5 +75,5 @@ def all_perms(elements):<br>
 --> Put hidden elements that only the program will detect.<br>
 --> Count the number of petitions of an IP.<br>
 --> Detect a high volume of petitions on a specific section of the web page or URL.<br>
---> Use an AI to detect an irregular user pattern of conduction.<br>
+--> Use an AI to detect an irregular user pattern of conduction.<br><br>
 <p align="justify">Of course, all this ideas are good but i wan to to think my personal solution. By my criteriuos the best way is just change the tags of all the elements when the HTML file is sended to the user. Th HTML file also has to been processer by an ofuscator because it's possible automat the scrapping using the structure of the HTML if it is always the same. The problem of do it is that if there's for example a part of JavaScript code you need to validate when the user send a POST o GET message. If not, </p>
