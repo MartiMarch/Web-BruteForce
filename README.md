@@ -34,7 +34,7 @@ def all_perms(elements):<br>
       URL
     </td>
     <td>
-      URL of the webpage
+      URL of the web page
     </td>
   </tr>
   <tr>
