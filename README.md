@@ -70,3 +70,9 @@ def all_perms(elements):<br>
     </td>
   </tr>
 </table>
+<h2>How to prevent the brute force attack</h2>
+<p align="justify">This type of attack need to scrapp the web page so the mos popular options are just detect of any one is scrapping the web page. There are a lot of optios:</p>
+--> Put hidden elements thath only the program will detect.
+--> Count the number of petitions of an IP.
+--> Detect a high volume of petitions on a specific section of the web page or URL.
+--> Use na IA to detect am irregular user pattern of conduction.
