@@ -10,7 +10,7 @@ Launch a brute force attack over a web page with Selenium and Python.
 <p align="justify">There are two fundamentals stpes. The first step consits on create all the possible permutations. To do it i have used a default python function named "permutations", it's inside of itertools. The function work efficiently so i didn't take any effort to optimitze it. However, if you want to know more about it the <a href="https://stackoverflow.com/questions/104420/how-to-generate-all-permutations-of-a-list">implementation</a> of th function is the next:</p>
 
 def all_perms(elements):<br>
-    if len(elements) <=1:<br>
+<pre>if len(elements) <=1:<br>
         yield elements<br>
     else:<br>
         for perm in all_perms(elements[1:]):<br>
