@@ -115,5 +115,5 @@ pb = PassBroker(URL, USER, CHARS, N, PASS_LENG)
 pb.parallelizedBF()
 """
 
-pb = PassBroker(URL, USER, CHARS, N, 5)
+pb = PassBroker(URL, USER, CHARS, N, PASS_LENG)
 pb.parallelizedBF_mechanized()
