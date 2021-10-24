@@ -101,16 +101,6 @@ class PassBroker:
         self.queue.join()
 
 """
-pb = PassBroker(URL, USER, CHARS)
-pb.basicBF()
-"""
-
-"""
-pb = PassBroker(URL, USER, CHARS, N)
-pb.parallelizedBF()
-"""
-
-"""
 pb = PassBroker(URL, USER, CHARS, N, PASS_LENG)
 pb.parallelizedBF()
 """
