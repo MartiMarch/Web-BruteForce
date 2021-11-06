@@ -6,17 +6,18 @@ Launch a brute force attack over a web page with Selenium and Python.
 <h2>Description</h2>
 <p align="justify">The prupose of this repository is explain how is possible to launch a brute force attack over a web page generating all the permutations using a list of chars and Selenium.<p>
   
-<p align="justify">There are two fundamentals stpes. The first step consits on create all the possible permutations. To do it i have used a default python function named "permutations", it's inside of itertools. The function work efficiently so i didn't take any effort to optimitze it. However, if you want to know more about the <a href="https://stackoverflow.com/questions/104420/how-to-generate-all-permutations-of-a-list">implementation</a> here is the code:</p>
+<p align="justify">There are two fundamentals stpes. The first step consits on create all the possible combinations. To do it i have used a default python function named "product", it's inside of itertools. The function work efficiently so i didn't take any effort to optimitze it. However, if you want to know more about the <a href="https://stackoverflow.com/questions/104420/how-to-generate-all-permutations-of-a-list">implementation</a> here is the code:</p>
 
 <pre>
-def all_perms(elements):<br>
-    if len(elements) <=1:<br>
-        yield elements<br>
-    else:<br>
-        for perm in all_perms(elements[1:]):<br>
-            for i in range(len(elements)):<br>
-                # nb elements[0:1] works in both string and list contexts<br>
-                yield perm[:i] + elements[0:1] + perm[i:]<br>
+def product(*args, repeat=1):
+    # product('ABCD', 'xy') --> Ax Ay Bx By Cx Cy Dx Dy
+    # product(range(2), repeat=3) --> 000 001 010 011 100 101 110 111
+    pools = [tuple(pool) for pool in args] * repeat
+    result = [[]]
+    for pool in pools:
+        result = [x+[y] for x in result for y in pool]
+    for prod in result:
+        yield tuple(prod)
 </pre>
 <br>
 <p align="justify">The second step is send the petition to the web page. Selenium can search the input using the name of the input so the program only has to get the list of permutations and loop over it putting every element of the list as the password. If this is executed secuencialy it will take a lot of time so i parallelized the code using a queue (FIFO) with N threds. The parameters passed to the queue are the passwords and a random thread take it and launch the login petition.</p>
